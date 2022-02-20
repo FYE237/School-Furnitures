@@ -47,7 +47,8 @@ const styles= StyleSheet.create({
     },
     textSignUp:{
         fontSize:18,
-        fontWeight:'bold'
+        fontWeight:'bold',
+        color:'white'
     },
     footer:{
         flex:1.5,

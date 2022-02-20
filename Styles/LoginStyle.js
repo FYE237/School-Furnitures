@@ -1,3 +1,4 @@
+import { Children } from "react"
 import { StyleSheet ,Dimensions} from "react-native"
 
 const styles= StyleSheet.create({
@@ -15,8 +16,74 @@ const styles= StyleSheet.create({
        justifyContent:'center',
        alignItems:'center'
     },
+    iconModal:{
+        marginTop:5, 
+        marginBottom:25, 
+       justifyContent:'center',
+       alignItems:'center',
+    },
+    titleModal:{
+        color:'#6050DC',
+        marginBottom:15,
+        fontSize:25,
+        fontWeight:'bold',
+        marginLeft:10,
+        justifyContent:'center'
+    },
+    actionModal:{
+        marginTop:25,
+        flexDirection:'row',
+        borderBottomWidth: 1,
+        borderBottomColor: '#f2f2f2',
+        marginLeft:8,
+        paddingBottom: 5
+    },
+    buttonsModal:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        flex:1
+    },
+    signInModal:{
+        marginTop:50,
+        marginLeft:25,
+        backgroundColor: '#6050DC',
+        width: '40%',
+        height: 50,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        borderRadius: 10,
+    },
+    exitModal:{
+        marginTop:50,
+        marginRight:35,
+        backgroundColor: '#ffffff',
+        shadowOpacity: 0.23,
+         shadowRadius: 2.62,
+         elevation: 4,
+        width: '40%',
+        height: 50,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        borderRadius: 10,
+    },
+    containerModal:{
+        marginTop:15,
+        marginBottom:25,
+        marginRight:25,
+        marginLeft:25,
+        flex:1,
+         shadowColor: '#000',
+         shadowOffset: {
+           width: 0,
+           height: 2,
+         },
+         shadowOpacity: 0.23,
+         shadowRadius: 2.62,
+         elevation: 4,
+    },
     nomApp:{
-      color:'#000000',
+      color:'black',
       fontSize:40,
       fontWeight:'bold', 
       fontStyle:'italic'
@@ -30,7 +97,6 @@ const styles= StyleSheet.create({
     },
     action:{
         flexDirection:'row',
-        marginTop: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#f2f2f2',
         paddingBottom: 5
@@ -46,8 +112,16 @@ const styles= StyleSheet.create({
     },
     textSignIn:{
         fontSize:18,
-        fontWeight:'bold'
-    },
+        fontWeight:'bold',
+        alignSelf:'center',
+        color:"white",
+    },  
+    textQuit:{
+        fontSize:18,
+        fontWeight:'bold',
+        alignSelf:'center',
+        color:"black",
+    },  
     footer:{
         flex:1.5,
         backgroundColor:'white',

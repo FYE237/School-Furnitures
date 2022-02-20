@@ -4,6 +4,8 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import CreateAccount from './Component/CreateAccount';
 import LoginScreen from './Component/Login';
+import React,{Suspense} from 'react';
+import Test from './test';
 
 /* import CreateAccountStyles from './Styles/CreateAccountStyles';
  */
@@ -12,7 +14,7 @@ const Stack=createStackNavigator()
 
 
 export default function App() {
-  return (
+  return ( 
     <NavigationContainer>
       <Stack.Navigator  initialRouteName="Login" 
       screenOptions={{
@@ -22,8 +24,18 @@ export default function App() {
         <Stack.Screen name="CreateAccount" component={CreateAccount}/>
       </Stack.Navigator>
     </NavigationContainer>
+           
   );
 }
+
+
+/* export default function App(){
+  return (
+    <Suspense fallback="loading">  
+      <Test/>
+      </Suspense> 
+      )
+} */
 
 const styles = StyleSheet.create({
   container: {

@@ -8,7 +8,25 @@ import { TextInput, TouchableHighlight } from 'react-native-gesture-handler'
 import { createStackNavigator,createAppContainer } from '@react-navigation/stack'
 //import LinearGradient from 'react-native-linear-gradient';
 import styles from '../Styles/CreateAccountStyle'
+import * as yup from  'yup'
 
+
+const ReviewSchema = yup.object({
+    Email: yup.string()
+              .email("Vous devez entrer un email valide")
+              .required("Un Email est requis"),
+            // .test('nom-variable-identifiante','Message d'érreur',(val) =>{
+            //    return   true or false en fonction du test de validation
+            //}
+    password:yup.string()
+                .required("Un mot de passe est requis")
+                .min(8,"Votre mot de passe doit possédr au moins 8 caractères"),
+    firstName:yup.string()
+           .required("Votre nom est requis"),
+    lastName:yup.string()
+              .required("Votre prénom est requis")
+    
+})
 
 
 const CreateAccount = ({navigation}) => {
@@ -29,7 +47,11 @@ const CreateAccount = ({navigation}) => {
     return(
         <ScrollView style={styles.container}
             showVerticalScrollIndicator={false}>
-            
+            <View>
+            {/* <FontAwesome5 
+                    name="angles-left" size={10} color="black" /> */}
+            </View>
+
            <View style={styles.footer}>
                 <View style={styles.icon}>
                     <FontAwesome5 
@@ -39,18 +61,10 @@ const CreateAccount = ({navigation}) => {
                 <Text style={styles.title}>
                     Créez votre compte
                     </Text>
-               {/*  <Text>
-                    Vous n'avez pas encore de compte?
-                    <Text  style={{color:'#E73E01',
-                        fontStyle:'italic'}} 
-                        onPress={() => navigation.navigate('CreateAccount')}
-                        >
-                    Inscrivez-vous maintenant
-                </Text>
-                </Text> */}
                 <View>
                     <Formik
                         initialValues = {{Email: '',firstName:'',lastName:'',password:''/* ,Tel:'' */}}
+                        validationSchema={ReviewSchema}
                         onSubmit={(values,actions) => {
                                 actions.resetForm()
                                 console.log(values)
@@ -61,68 +75,77 @@ const CreateAccount = ({navigation}) => {
                             
                             
 
-                            <View style={{marginTop: 50}}>
+                            <View style={{marginTop: 45}}>
                                 {/* Email */}
                                 <Text>Email</Text>
                                 <View style={styles.action}> 
                                     <FontAwesome 
                                     name='user-o'
-                                    color="#0000000"
+                                    color="black"
                                     size={20}/>
                                     <TextInput
                                         style={{marginLeft:10}}
                                         placeholder="Entrez votre E-mail"
                                         onChangeText={props.handleChange('Email')}
                                         value={props.values.Email}
-                                        keyboardType='email-address'/>
+                                        keyboardType='email-address'
+                                        onBlur={props.handleBlur('Email')}/>
                                 </View>
+                                <Text>{props.errors.Email}</Text>
+
                                 {/* Noms */}
-                                <View style={{marginTop:30}}>
+                                <View style={{marginTop:25}}>
                                     <Text>Noms</Text>
                                     <View style={styles.action}> 
                                         <FontAwesome 
                                         name='user-o'
-                                        color="#0000000"
+                                        color="black"
                                         size={20}/>
                                         <TextInput
                                             style={{marginLeft:10}}
                                             placeholder="Entrez votre nom"
                                             onChangeText={props.handleChange('firstName')}
                                             value={props.values.firstName}
+                                            onBlur={props.handleBlur('firstName')}
                                             />
                                     </View>
                                 </View>
+                                <Text>{props.errors.firstName}</Text>
+
                                {/*  {Prénoms} */}
-                                <View style={{marginTop:30}}>
+                                <View style={{marginTop:25}}>
                                     <Text>Prénoms</Text>
                                     <View style={styles.action}> 
                                         <FontAwesome 
                                         name='user-o'
-                                        color="#0000000"
+                                        color="black"
                                         size={20}/>
                                         <TextInput
                                             style={{marginLeft:10}}
                                             placeholder="Entrez votre prénom"
                                             onChangeText={props.handleChange('lastName')}
                                             value={props.values.lastName}
+                                            onBlur={props.handleBlur('lastName')}
                                             />
                                     </View>
                                 </View>
+                                <Text>{props.errors.lastName}</Text>
 
                                 {/* Password */}
-                                <View style={{marginTop:30,display:'flex',flexDirection:'column'}}>
+                                <View style={{marginTop:25,display:'flex',flexDirection:'column'}}>
                                     <Text>Mot de passe</Text>
                                     <View style={styles.action}>
                                         <FontAwesome 
                                         name='lock'
-                                        color="#0000000"
+                                        color="black"
                                         size={20}/>
                                         <TextInput
                                             style={{marginLeft:10}}
                                             placeholder="Entrez votre mot de passe"
                                             onChangeText={props.handleChange('password')}
                                             value={props.values.password}
-                                            secureTextEntry={data.secureTextEntry}/>
+                                            secureTextEntry={data.secureTextEntry}
+                                            onBlur={props.handleBlur('password')}/>
                                         <TouchableOpacity
                                             style={{flex:1}}
                                             onPress={updateSecurityTextEntry}>
@@ -141,6 +164,8 @@ const CreateAccount = ({navigation}) => {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
+                                <Text>{props.errors.password}</Text>
+
                                    {/*  Numero de téléphone */}
 
                                {/*  <View style={{marginTop:20}}>
@@ -160,7 +185,7 @@ const CreateAccount = ({navigation}) => {
                                 </View> */}
 
                                    {/*  button submit */}
-                                    <View style={styles.button}>
+                                    <View>
                                         <TouchableHighlight
                                             colors= {['#E73E01','#DF73FF']}
                                             onPress = {props.handleSubmit}
