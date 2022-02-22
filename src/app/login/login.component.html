@@ -1,0 +1,35 @@
+<div class="contain">
+    <div class="container">
+        <div id="image">
+            <p>image</p>
+        </div>
+
+        <div class="formulaire">
+            <div class="titre">Connectez vous à votre compte</div>
+            <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+                
+                <mat-form-field appearance="fill" class="champ">
+                    
+                    <mat-label style="color:aliceblue">Email</mat-label>
+                        <input matInput  name="email" formControlName="email">
+                     </mat-form-field>
+                    
+                <mat-form-field appearance="fill" class="champ">
+                    <mat-label style="color:aliceblue">Mot de passe</mat-label>
+                        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon style="color:aliceblue">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          </button>
+                </mat-form-field>
+   
+                <button mat-raised-button type="submit" color="primary" class="button">Connexion</button>
+            </form>
+        </div>
+    
+    </div>
+    <span>
+        <ngx-spinner size="small" type="Ball Spin Clockwise">
+          <p style="font-size: 20px; color: white">Connexion...</p>
+        </ngx-spinner>
+    </span>
+    </div> 

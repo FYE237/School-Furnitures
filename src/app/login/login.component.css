@@ -1,0 +1,51 @@
+.contain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    background-color:gray;
+    margin-top: 60mm;
+    background: #eee;
+    box-shadow: 0 8px 8px -4px lightblue;
+    justify-content: space-between;
+    width: 20cm;
+    height: 13cm;
+    /* box-shadow: 0 5px 10px rgb(0 0 0 / 0.2); */
+    
+}
+.titre{
+    margin-top: 10mm;
+    font-size: large;
+    font-weight:bold ;
+    color: #eee;
+}
+
+.formulaire{
+    display: flex;
+    background-color: rgb(69, 69, 180);
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 10cm;
+
+}
+
+.champ{
+    margin-top: 10mm;
+    margin-left: 8mm;
+}
+
+.button{
+    margin-top: 20mm;
+    margin-left: 20mm;
+    margin-bottom: 8mm;
+    height: 15mm;
+    width: 40mm;
+    border-radius: 5px
+}

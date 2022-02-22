@@ -1,0 +1,17 @@
+<nav class="navbar">
+    <button mat-button class="nomApp" click="goHome()">EasyBuy</button>
+    <div class="blocNav">
+        <button mat-button class="buttonNav" (click)="seeFurnitures()">
+            <mat-icon>menu</mat-icon>
+            Fournitures</button>
+        <button mat-button class="buttonNav" (click)="seeHistoric()">
+            <mat-icon>archive icon</mat-icon>
+            Historique</button>
+        <button mat-button class="buttonNav" (click)="seeProfil()">
+            <mat-icon>home</mat-icon>
+            Profil</button>
+        <button mat-button class="buttonDeconnexion" (click)="logOut()">
+            <mat-icon>log_out</mat-icon>
+            Déconnexion</button>
+    </div>
+</nav>

@@ -1,0 +1,42 @@
+.navbar{
+    background-color:rgb(76, 0, 255);;
+    display: flex;
+    flex-direction: row;
+    height: 2cm;
+
+}
+
+.nomApp{
+    background-color: rgb(76, 0, 255);
+    color: aliceblue;
+    font-size: larger;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    margin-left: 10mm;
+}
+
+.blocNav{
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonNav{
+    background-color: rgb(76, 0, 255);
+    color: aliceblue;
+    font-size: larger;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.buttonDeconnexion{
+    background-color: rgb(218, 27, 100);
+    color: aliceblue;
+    font-size: larger;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    margin-top: 2mm;
+    margin-bottom: 2mm;
+    margin-right: 2mm;
+    border-radius: 5px;
+}

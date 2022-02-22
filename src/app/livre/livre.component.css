@@ -1,0 +1,10 @@
+.livre{
+    flex-direction: column;
+    border-width: 10mm;
+    margin-left: 5mm;
+    margin-top: 2mm;
+    margin-right: 5mm;
+    
+    text-align: center;
+  
+  }
