@@ -12,7 +12,7 @@ import * as yup from  'yup'
 
 
 const ReviewSchema = yup.object({
-    Email: yup.string()
+    email: yup.string()
               .email("Vous devez entrer un email valide")
               .required("Un Email est requis"),
             // .test('nom-variable-identifiante','Message d'érreur',(val) =>{
@@ -20,7 +20,7 @@ const ReviewSchema = yup.object({
             //}
     password:yup.string()
                 .required("Un mot de passe est requis")
-                .min(8,"Votre mot de passe doit possédr au moins 8 caractères"),
+                .min(6,"Votre mot de passe doit possédr au moins 6 caractères"),
     firstName:yup.string()
            .required("Votre nom est requis"),
     lastName:yup.string()
@@ -63,13 +63,29 @@ const CreateAccount = ({navigation}) => {
                     </Text>
                 <View>
                     <Formik
-                        initialValues = {{Email: '',firstName:'',lastName:'',password:''/* ,Tel:'' */}}
+                        initialValues = {{email: '',firstName:'',lastName:'',password:''/* ,Tel:'' */}}
                         validationSchema={ReviewSchema}
                         onSubmit={(values,actions) => {
                                 actions.resetForm()
                                 console.log(values)
+                                fetch('https://easy-buy-po.herokuapp.com/users',{ 
+                                    method: "POST",
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Accept':'application/json'
+                                      },
+                                   body:JSON.stringify(values)
+                                   
+                               })
+                               //.then(response => response)
+                               .then(response => console.log(response.json()))
+                               .then( navigation.navigate("Login"))
+                               .catch(alert("ERROR"))
+                               //.then(json => {entervalidEmail}) //A FAIRE
+                               /*. catch(alert("ERROR")) */
+                       
                                 //Redirection
-                                navigation.navigate("Login")
+                               
                         }}>
                         {(props) => (  /* Champs du formulaire */
                             
@@ -86,12 +102,12 @@ const CreateAccount = ({navigation}) => {
                                     <TextInput
                                         style={{marginLeft:10}}
                                         placeholder="Entrez votre E-mail"
-                                        onChangeText={props.handleChange('Email')}
-                                        value={props.values.Email}
+                                        onChangeText={props.handleChange('email')}
+                                        value={props.values.email}
                                         keyboardType='email-address'
-                                        onBlur={props.handleBlur('Email')}/>
+                                        onBlur={props.handleBlur('email')}/>
                                 </View>
-                                <Text>{props.errors.Email}</Text>
+                                <Text>{props.errors.email}</Text>
 
                                 {/* Noms */}
                                 <View style={{marginTop:25}}>

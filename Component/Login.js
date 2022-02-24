@@ -12,7 +12,7 @@ import * as yup from  'yup'
 
 
 const ReviewSchema = yup.object({
-    Email: yup.string()
+    email: yup.string()
               .email("Vous devez entrer un email valide")
               .required("Un Email est requis"),
             // .test('nom-variable-identifiante','Message d'érreur',(val) =>{
@@ -20,7 +20,7 @@ const ReviewSchema = yup.object({
             //}
     password:yup.string()
                 .required("Un mot de passe est requis")
-                .min(8,"Votre mot de passe doit possédr au moins 8 caractères")
+                .min(6,"Votre mot de passe doit possédr au moins 6 caractères")
     
 })
 
@@ -28,7 +28,7 @@ const ReviewSchema = yup.object({
 const LoginScreen = ({navigation}) => {
 
     const [data,setData]=React.useState({
-        Email:'',
+        email:'',
         secureTextEntry:true,
         isValid:true,
         modalOpen:false,
@@ -45,7 +45,7 @@ const LoginScreen = ({navigation}) => {
     const handleEmail = (text) => {
         setData({
             ...data,
-            Email: text
+            email: text
         })
     }
 
@@ -64,13 +64,13 @@ const LoginScreen = ({navigation}) => {
     }
 
     const sendEmail = () => {
-        if(data.Email != '') 
+        if(data.email != '') 
             {   
-                console.log(data.Email)
+                console.log(data.email)
                /*  fetch('',{ 
                      method: "POST",
                     body:JSON.stringify({
-                        Email: data.Email
+                        email: data.Email
                     }),
                     headers: {
                         Accept: 'application/json',
@@ -173,12 +173,29 @@ const LoginScreen = ({navigation}) => {
                 </Text>
                 <ScrollView style={{flex:1,backgroundColor:'#fffffff'}}>
                     <Formik
-                        initialValues = {{Email: '',password:''}}
+                        initialValues = {{email:'',password:''}}
                         validationSchema={ReviewSchema}
                         onSubmit={(values,actions) => {
                                 actions.resetForm()
-                                console.log(values)
+                                console.log(JSON.stringify({
+                                    titre:"kjfgdg",
+                                    all:"dfkgjdkjgdf"
+                                }))
+                                console.log(JSON.stringify(values))
                                 //Redirection
+                                fetch('https://easy-buy-po.herokuapp.com/auth',{ 
+                                    method: "POST",
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Accept':'application/json'
+                                      },
+                                   body:JSON.stringify(values)
+                                   
+                               })
+                               //.then(response => response)
+                               .then(response => console.log(response.json()))
+                               //.then(json => {entervalidEmail}) //A FAIRE
+                               /*. catch(alert("ERROR")) */
                         }}>
                         {(props) => (  /* Champs du formulaire */
                             
@@ -193,11 +210,11 @@ const LoginScreen = ({navigation}) => {
                                     <TextInput
                                         style={{marginLeft:10}}
                                         placeholder="Entrez votre E-mail"
-                                        onChangeText={props.handleChange('Email')}
-                                        value={props.values.Email}
+                                        onChangeText={props.handleChange('email')}
+                                        value={props.values.email}
                                         keyboardType='email-address'/>
                                 </View>
-                                <Text>{props.errors.Email}</Text>
+                                <Text>{props.errors.email}</Text>
                                 
                                 {/* Password */}
                                 <View style={{marginTop:30}}>
