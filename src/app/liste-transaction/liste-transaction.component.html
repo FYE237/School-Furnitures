@@ -1,0 +1,22 @@
+<app-livre-view></app-livre-view>
+
+<div class="container">
+    <div class="enTeteRecherche">
+        <mat-form-field style="margin-left: 20mm;">
+            <input matInput #filterValue (keyup)="applyFilter(filterValue.value)" placeholder="Rechercher">
+        </mat-form-field>
+
+        <mat-paginator [pageSizeOptions]="[10, 25, 40, 100]" aria-label="Choisissez la page" style="margin-left: auto;">
+        </mat-paginator>
+    </div>
+
+    <div class="liste">
+        <app-transaction *ngFor="let transaction of obs | async" [vendeur]=transaction.vendeur
+            [acheteur]=transaction.acheteur [prix]=transaction.prix [date]=transaction.date></app-transaction>
+    </div>
+</div>
+
+
+
+
+<!--  [pageSizeOptions]="[3, 10, 25, 100]" -->

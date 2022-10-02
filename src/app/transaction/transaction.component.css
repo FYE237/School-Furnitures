@@ -1,0 +1,21 @@
+.transaction{
+  display: flex;
+  /* margin-left: 10mm; */
+  margin: 2em;
+  padding: 0 2em;
+
+  background-color: aliceblue;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 8px -4px lightblue ;
+  
+}
+
+.nomProduit{
+  padding: 1em 2em;
+  flex-grow: 1;
+}
+
+.button{
+  margin-bottom: 3mm;
+}

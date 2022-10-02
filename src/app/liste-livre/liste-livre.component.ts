@@ -1,7 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { LivreModel } from '../modèles/Livre';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { LivreService } from '../services/livre.service';
+import { UserService } from '../services/user.service';
+import { LivreStockModel } from '../modèles/LivreStock';
 //import {MatSort} from '@angular/material'
 
 @Component({
@@ -11,59 +15,48 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class ListeLivreComponent implements OnInit {
 
-  //@ViewChild(MatPaginator) paginator: MatPaginator
-  //@ViewChild(Matsort) sort: Matsort
   
+  livreSubscription: Subscription | undefined
+  livresStock: LivreStockModel[]= []
+  name="stock"
+  
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+  obs: Observable<any> ;
+  dataSource: MatTableDataSource<LivreStockModel> = new MatTableDataSource<LivreStockModel>(this.livresStock);
 
-  p:any;
-  livres=/*  LivreModel[]= */[
-    {
-      auteur:"gdfs",
-      intitule:"jhdfjhsf",
-      lieuStockage:"dsjfks",
-      maisonEdition:"djf",
-      prix:500,
-      propriétaire:"FYE",
-      type:"Livre",
-      recu:false
-    },
-    {
-      auteur:"gdfs",
-      intitule:"jhdfjhsf",
-      lieuStockage:"dsjfks",
-      maisonEdition:"djf",
-      prix:500,
-      propriétaire:"FYE",
-      type:"Livre",
-      recu:false
-    },
-    {
-      auteur:"gdfs",
-      intitule:"jhdfjhsf",
-      lieuStockage:"dsjfks",
-      maisonEdition:"djf",
-      prix:500,
-      propriétaire:"FYE",
-      type:"Livre",
-      recu:false
-    },
-    {
-      auteur:"gdfs",
-      intitule:"jhdfjhsf",
-      lieuStockage:"dsjfks",
-      maisonEdition:"djf",
-      prix:500,
-      propriétaire:"FYE",
-      type:"Livre",
-      recu:false
-    },
-  ]
 
-  constructor() { }
-
-  ngOnInit(): void {
-    //this.livres.paginator = 
+  constructor(private changeDetectorRef: ChangeDetectorRef,
+              private livreService: LivreService,
+              private userService: UserService) { 
+   
+    
+    this.obs = this.dataSource.connect();
   }
+
+
+  async ngOnInit(): Promise<void> {
+    this.userService.isAuth=true;
+    this.livreSubscription = this.livreService.LivreStockSubject.subscribe(
+      (livresStock:LivreStockModel[]) => {
+        this.livresStock=livresStock
+       // console.log(this.livresStock)
+      }
+    )
+  await  this.livreService.emitLivresStock()
+   // console.log(this.livresStock)
+this.dataSource= new MatTableDataSource<LivreStockModel>(this.livresStock);
+    this.changeDetectorRef.detectChanges();
+    if(this.paginator != undefined) this.dataSource.paginator = this.paginator;
+    this.obs = this.dataSource.connect();
+  }
+
+
+  applyFilter(filterValue: string){
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+
 
 }
 

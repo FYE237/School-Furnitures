@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { LivreComponent } from './livre/livre.component';
-import { LivreViewComponent } from './livre-view/livre-view.component';
 import { ListeLivreComponent } from './liste-livre/liste-livre.component';
+import { ListeTransactionComponent } from './liste-transaction/liste-transaction.component';
+import { ListeLivreAttenteComponent } from './liste-livre-attente/liste-livre-attente.component';
 
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'',component:LoginComponent},
   {path:'furnitures/livres',component:ListeLivreComponent},
-  {path:'furnitures/livres/:id',component:LivreComponent}
+  {path:'furnitures/livres_attente',component:ListeLivreAttenteComponent},
+  {path:'transactions',component:ListeTransactionComponent},
 ];
 
 @NgModule({

@@ -19,9 +19,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,private router: Router,
     private ngxSpinner:NgxSpinnerService,         
-    private userService:UserService) { }
+    private userService:UserService) {this.userService.isAuth=false }
 
   ngOnInit(): void {
+  
     this.initForm()
   }
 
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
       email:['',[Validators.required,Validators.email]],
       password:['',[Validators.required,Validators.minLength(8),]]
     })
-    this.message=this.userService.message
+    this.message="";
   }
 
  
@@ -46,10 +47,11 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       /** spinner ends after 3 seconds */
       this.ngxSpinner.hide(); 
-      this.message=this.userService.message
-      if(this.message==""){
-        console.log(JSON.stringify({email:newUser.email,password:newUser.password}))
-        this.router.navigate(['/furnitures/livres'])
+      // this.message=this.userService.message 
+      if(this.userService.isAuth==true){
+       // console.log(JSON.stringify({email:newUser.email,password:newUser.password}))
+        this.router.navigate(['/furnitures/livres']);
+        // this.message="";
       }
       else alert("ERROR")
     }, 3000);

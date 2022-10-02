@@ -13,6 +13,7 @@ export class LivreViewComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit(): void {
+    //console.log("UserLogin :  ",this.userService.isAuth)
   }
 
   goHome(){
@@ -24,12 +25,30 @@ export class LivreViewComponent implements OnInit {
   }
 
   seeHistoric(){
+    
+          this.router.navigate(['transactions'])
 
   }
 
   seeProfil(){
+    
 
   }
+
+  goToProduitEnStock(){
+    
+        //console.log("stock")
+        this.router.navigate(['furnitures/livres'])
+    }
+  
+
+  goToProduitEnAttente(){
+    
+          //console.log('Attente')
+          this.router.navigate(["furnitures/livres_attente"])
+         
+        
+      }
 
   logOut(){
     this.userService.isAuth=false

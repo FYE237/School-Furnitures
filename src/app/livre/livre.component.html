@@ -1,4 +1,44 @@
 <div class="livre">
-    <h4 style="margin-top: 5mm;margin-bottom: 5mm;">{{livreName}}</h4>
-     <h5>{{livrePrix}}</h5> 
+    <div >
+        <img src="https://easy-buy-po.herokuapp.com/images/{{livrePhoto}}" alt="Image de l'article" style="width: 5cm;margin: 5mm;">
+    </div>
+    <h4 classe="nomProduit">Intitule: {{livreName}}</h4>
+     <h4 >Prix: {{livrePrix}}</h4> 
+     <button mat-raised-button  color="primary" class="button" (click)="openFurnituresDetails(longContent)">Détail</button>
+</div> 
+
+
+
+<ng-template #longContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Modal title</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>Initutle : {{livreName}}</p>
+        <p>Prix : {{livrePrix}}</p>
+     <!-- <p>Identifiant : {{livreId}}</p> -->
+     <p> Recu : {{livreRecu}}</p>
+     <div [ngSwitch]="source">
+     <p  *ngSwitchCase="'attente'">Lieu de Stockage : {{livreLieuStockage}}</p>
+    </div>
+     <p>Maison d'Edition : {{livreMaisonEdition}}</p>
+     <div [ngSwitch]="source">
+     <p *ngSwitchCase="'attente'">Propriétaire : {{livreProprietaire}}</p>
+    </div>
+     <!-- <p>Propriétaire : {{livreProprietaire}}</p> -->
+     <p>Matière : {{livreMatiere}}</p>
+     <p></p>
+    </div>
+<div class="modal-footer">
+  <div>
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+      <div [ngSwitch]="source">
+    <div *ngSwitchCase="'attente'">
+      <button mat-raised-button  color="primary" class="button" (click)="validateFurnitures(livreId)">Valider</button>
+    </div>
+  </div>
 </div>
+  </ng-template>
+  

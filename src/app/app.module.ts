@@ -13,11 +13,17 @@ import {MatIconModule} from '@angular/material/icon';
 import { ListeLivreComponent } from './liste-livre/liste-livre.component';
 import { LivreComponent } from './livre/livre.component';
 import { LivreViewComponent } from './livre-view/livre-view.component';
-import { UserService } from './services/user.service';
-import { LivreService } from './services/livre.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatTableModule} from '@angular/material/table';
+import { UserService } from './services/user.service';
+import { LivreService } from './services/livre.service';
+import { TransactionComponent } from './transaction/transaction.component';
+import { ListeTransactionComponent } from './liste-transaction/liste-transaction.component';
+import { ListeLivreAttenteComponent } from './liste-livre-attente/liste-livre-attente.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -26,7 +32,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     LoginComponent,
     ListeLivreComponent,
     LivreComponent,
-    LivreViewComponent
+    LivreViewComponent,
+    ListeTransactionComponent,
+    TransactionComponent,
+    ListeLivreAttenteComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +50,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatIconModule,
     HttpClientModule,
     NgxSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatMenuModule,
+    MatTableModule,
+    NgbModule
   ],
   providers: [UserService,LivreService],
   bootstrap: [AppComponent]

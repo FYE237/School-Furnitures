@@ -1,0 +1,41 @@
+<app-livre-view></app-livre-view>
+
+<div class="container">
+    <div class="enTeteRecherche">
+    <mat-form-field  style="margin-left: 20mm;">
+        <input matInput #filterValue (keyup)="applyFilter(filterValue.value)" placeholder="Rechercher">
+      </mat-form-field>
+
+    <mat-paginator 
+              [pageSizeOptions]="[10, 20, 40, 100]"
+              aria-label="Choisissez la page"
+              style="margin-left: auto;" 
+              >
+    </mat-paginator>
+    </div>
+    <div class="liste">
+       <!--  <ul class="list-group container"> -->
+        <app-livre *ngFor="let livre of obs | async"
+        [livreName]=livre.intitule
+        [livrePrix]=livre.prix
+        [livreAuteur]=livre.autheur
+        [livrePhoto]=livre.photo
+        [livreId]=livre.Id
+        [livreRecu]=livre.recu
+        [livreLieuStockage]=livre.lieuStockage
+        [livreMaisonEdition]=livre.maisonEdition
+        [livreProprietaire]=livre.proprietaire
+        [livreMatiere]=livre.matiere
+        [source]=name
+        > </app-livre>
+        <!--     </ul> -->
+    </div>
+    <span>
+      <ngx-spinner size="small" type="Ball Spin Clockwise">
+        <p style="font-size: 20px; color: white">Chargement...</p>
+      </ngx-spinner>
+     </span>
+</div>
+
+
+<!--  [pageSizeOptions]="[3, 10, 25, 100]" -->

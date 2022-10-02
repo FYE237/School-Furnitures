@@ -1,9 +1,15 @@
 <nav class="navbar">
-    <button mat-button class="nomApp" click="goHome()">EasyBuy</button>
+    <div  class="logoApp">
+        <button mat-button  class="nomApp" (click)="goHome()">EasyBook</button>
+    </div>
     <div class="blocNav">
-        <button mat-button class="buttonNav" (click)="seeFurnitures()">
+        <button mat-button class="buttonNav" [matMenuTriggerFor]="aboveMenu" >
             <mat-icon>menu</mat-icon>
             Fournitures</button>
+            <mat-menu #aboveMenu="matMenu"  yPosition="below">
+                <button mat-menu-item class="belowOptions"  (click)="goToProduitEnStock()">En Stock</button>
+                <button mat-menu-item class="belowOptions" (click)="goToProduitEnAttente()">En attente</button>
+              </mat-menu>
         <button mat-button class="buttonNav" (click)="seeHistoric()">
             <mat-icon>archive icon</mat-icon>
             Historique</button>

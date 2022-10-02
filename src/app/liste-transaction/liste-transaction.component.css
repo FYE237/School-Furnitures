@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    margin-top: 2mm;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+}
+
+.liste{ 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+.enTeteRecherche{
+    display: flex;
+    flex-direction: row;
+}
+

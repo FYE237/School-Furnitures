@@ -1,10 +1,22 @@
 .livre{
-    flex-direction: column;
-    border-width: 10mm;
-    margin-left: 5mm;
-    margin-top: 2mm;
-    margin-right: 5mm;
-    
-    text-align: center;
+  flex-direction: column;
+  margin-left: 10mm;
+  margin-top: 5mm;
+  text-align: center;
+  background-color: aliceblue;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 8px -4px lightblue;
   
-  }
+}
+
+.nomProduit{
+flex:1;
+flex-direction: raw;
+flex-wrap: wrap;
+margin-top: 5mm;margin-bottom: 5mm;
+}
+
+.button{
+  margin-bottom: 3mm;
+}
